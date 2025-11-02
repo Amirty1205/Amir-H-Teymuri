@@ -1522,6 +1522,7 @@ __metadata:
     eslint: "npm:^9"
     eslint-config-next: "npm:15.5.3"
     next: "npm:15.5.3"
+    ogl: "npm:^1.0.11"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
     react-tsparticles: "npm:^2.12.2"
@@ -3515,6 +3516,13 @@ __metadata:
     define-properties: "npm:^1.2.1"
     es-object-atoms: "npm:^1.0.0"
   checksum: 10c0/3c47814fdc64842ae3d5a74bc9d06bdd8d21563c04d9939bf6716a9c00596a4ebc342552f8934013d1ec991c74e3671b26710a0c51815f0b603795605ab6b2c9
+  languageName: node
+  linkType: hard
+
+"ogl@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "ogl@npm:1.0.11"
+  checksum: 10c0/93cf2195da1c06a190c30cb8664231dd2d5fb06c5120d517754e11a22ab37fcb001361f9d2163dbac9f754a2aa2beb59ba82df37f972d6a674d6ebf9a2a089b8
   languageName: node
   linkType: hard
 
