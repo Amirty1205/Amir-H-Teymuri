@@ -4,22 +4,32 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import DarkModeToggle from "./DarkModeToggle";
+import LanguageSelector from "./LangSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isDark, setIsDark] = useState(false);
+  
+  const { language } = useLanguage();
 
   const sections = ["about", "projects", "contact"];
+
+
+  // ✅ CORRECT - Use console.log for debugging
+  useEffect(() => {
+    console.log('Language changed to:', language);
+  }, [language]);
 
   useEffect(() => {
     const checkDarkMode = () => {
       setIsDark(document.documentElement.classList.contains('dark'));
     };
-    
+
     checkDarkMode();
     const observer = new MutationObserver(checkDarkMode);
-    observer.observe(document.documentElement, { 
+    observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class']
     });
@@ -53,7 +63,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header 
+    <header
       className="fixed top-0 w-full z-50 backdrop-blur-sm h-16 transition-colors duration-300"
       style={{
         backgroundColor: 'var(--bg-primary)'
@@ -75,16 +85,16 @@ export default function Header() {
         <div className="flex items-center h-full"> {/* Added h-full here */}
           {/* Desktop Navigation */}
           <nav className="hidden md:flex h-full items-center space-x-0">
-            <a 
-              href="#about" 
-              onClick={(e) => smoothScroll(e, "#about")} 
+            <a
+              href="#about"
+              onClick={(e) => smoothScroll(e, "#about")}
               className="relative h-full flex items-center px-8 font-medium cursor-pointer transition-all duration-300 group"
               style={{
                 color: activeSection === "about" ? 'var(--accent-color)' : 'var(--text-primary)',
               }}
             >
-              About
-              <div 
+              {language == 'en' ? "About" : "درباره"}
+              <div
                 className="absolute bottom-0 left-0 h-0.5 transition-all duration-300 group-hover:w-full"
                 style={{
                   width: activeSection === "about" ? '100%' : '0%',
@@ -92,17 +102,17 @@ export default function Header() {
                 }}
               />
             </a>
-            
-            <a 
-              href="#projects" 
-              onClick={(e) => smoothScroll(e, "#projects")} 
+
+            <a
+              href="#projects"
+              onClick={(e) => smoothScroll(e, "#projects")}
               className="relative h-full flex items-center px-8 font-medium cursor-pointer transition-all duration-300 group"
               style={{
                 color: activeSection === "projects" ? 'var(--accent-color)' : 'var(--text-primary)',
               }}
             >
-              Projects
-              <div 
+              {language === 'en' ? "Projects" : "پروژه ها"}
+              <div
                 className="absolute bottom-0 left-0 h-0.5 transition-all duration-300 group-hover:w-full"
                 style={{
                   width: activeSection === "projects" ? '100%' : '0%',
@@ -110,17 +120,17 @@ export default function Header() {
                 }}
               />
             </a>
-            
-            <a 
-              href="#contact" 
-              onClick={(e) => smoothScroll(e, "#contact")} 
+
+            <a
+              href="#contact"
+              onClick={(e) => smoothScroll(e, "#contact")}
               className="relative h-full flex items-center px-8 font-medium cursor-pointer transition-all duration-300 group"
               style={{
                 color: activeSection === "contact" ? 'var(--accent-color)' : 'var(--text-primary)',
               }}
             >
-              Contact
-              <div 
+              {language === 'en' ? "Contact" : "تماس"}
+              <div
                 className="absolute bottom-0 left-0 h-0.5 transition-all duration-300 group-hover:w-full"
                 style={{
                   width: activeSection === "contact" ? '100%' : '0%',
@@ -129,6 +139,11 @@ export default function Header() {
               />
             </a>
           </nav>
+
+          {/* Language Selector */}
+          <div className="flex items-center h-full"> {/* Added h-full here */}
+            <LanguageSelector />
+          </div>
 
           {/* Dark Mode Toggle */}
           <div className="flex items-center h-full"> {/* Added h-full here */}

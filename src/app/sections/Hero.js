@@ -2,12 +2,21 @@
 import React from "react";
 import Particles from "./Components/Particles"
 import ScrollIndicator from "./Components/ScrollIndicator";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
+
+  const { language } = useLanguage();
+
   const handleScrollAction = () => {
     // Optional: Add any additional logic when scroll is triggered
     console.log('Scroll action triggered');
   };
+
+  
+  // RTL styles for Persian
+  const isRTL = language === 'fa';
+  const sectionStyle = isRTL ? { direction: 'rtl' } : { direction: 'ltr'};
 
   return (
     <div style={{ backgroundColor: "#0a0f28", width: '100%', height: '100vh', position: 'relative', overflow: 'hidden' }}>
@@ -33,7 +42,8 @@ export default function Hero() {
         zIndex: 10,
         width: '90%',
         maxWidth: '800px',
-        pointerEvents: 'none'
+        pointerEvents: 'none',
+        ...sectionStyle
       }}>
         {/* Main Heading */}
         <h1 style={{
@@ -47,7 +57,7 @@ export default function Hero() {
           textShadow: '0 4px 8px rgba(0,0,0,0.3)',
           pointerEvents: 'none'
         }}>
-          Amir H. Teymuri
+          {language === 'en' ? "Amir H. Teymuri" : "امیر حسین تیموری"}
         </h1>
 
         {/* Subtext */}
@@ -62,7 +72,7 @@ export default function Hero() {
           textShadow: '0 2px 4px rgba(0,0,0,0.3)',
           pointerEvents: 'none'
         }}>
-          Front-End Engineer
+          {language === 'en' ? "Front-End Engineer" : "مهندس فرانت"}
         </p>
         <p style={{
           fontSize: 'clamp(0.5rem, 2vw, 1rem)',
@@ -75,7 +85,7 @@ export default function Hero() {
           textShadow: '0 2px 4px rgba(0,0,0,0.3)',
           pointerEvents: 'none'
         }}>
-          Front-End Develeoper with a passion for responsive and clean UX designs!
+          {language === 'en' ? "Front-End Developer with a passion for responsive and clean UX designs!" : "‌برنامه‌نویس فرانت با اشتیاق برای طراحی وبسایت‌ها و اپلیکیشن‌های ساده و تمیز!"}
         </p>
       </div>
 

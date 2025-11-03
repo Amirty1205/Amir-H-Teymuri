@@ -2,11 +2,15 @@
 import React, { useState } from "react";
 import ProjectCard from "./Components/Cards/ProjectCards";
 import useGitHubRepos from "@/hooks/useGitHubRepos";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 
 function ProjectsList() {
     const [activeFilter, setActiveFilter] = useState("All");
-
+    const { language } = useLanguage();
     const { repos, loading, error } = useGitHubRepos("Amirty1205");
+
+    const isRTL = language === 'fa';
+    const sectionStyle = isRTL ? { direction: 'rtl', textAlign: 'right' } : { direction: 'ltr', textAlign: 'left' };
 
     // Transform GitHub repos to project format
     const projects = repos.map(repo => ({
@@ -26,23 +30,23 @@ function ProjectsList() {
     }));
 
     if (loading) return (
-        <section id="projects" className="px-6 py-20 max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-6 text-left">My Projects</h2>
+        <section style={sectionStyle} id="projects" className="px-6 py-20 max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold mb-6 text-left">{language === 'en' ? "My Projects" : "پروژه های من"}</h2>
             <p className="text-left">Loading projects from GitHub...</p>
         </section>
     );
 
     if (error) return (
-        <section id="projects" className="px-6 py-20 max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-6 text-left">My Projects</h2>
+        <section style={sectionStyle} id="projects" className="px-6 py-20 max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold mb-6 text-left">{language === 'en' ? "My Projects" : "پروژه های من"}</h2>
             <p className="text-left text-red-600">Error loading projects</p>
         </section>
     );
 
     return (
-        <section id="projects" className="px-6 py-20">
+        <section style={sectionStyle} id="projects" className="px-6 py-20">
             <div className="max-w-4xl mx-auto"> {/* Add this wrapper */}
-                <h2 className="text-4xl font-bold mb-6">My Projects</h2>
+                <h2 className="text-4xl font-bold mb-6">{language === 'en' ? "My Projects" : "پروژه های من"}</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projects.map(project => (
