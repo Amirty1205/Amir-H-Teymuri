@@ -1,5 +1,6 @@
+// tailwind.config.js
 module.exports = {
-  darkMode: 'media', // or 'class' if you want toggle
+  darkMode: 'class', // Change from 'media' to 'class'
   theme: {
     extend: {
       colors: {
@@ -14,4 +15,4 @@ module.exports = {
       },
     },
   },
-};
+}

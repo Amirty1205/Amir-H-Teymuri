@@ -10,12 +10,12 @@ export default function Hero() {
   };
 
   return (
-    <div style={{ backgroundColor: "#05061f", width: '100%', height: '100vh', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ backgroundColor: "#0a0f28", width: '100%', height: '100vh', position: 'relative', overflow: 'hidden' }}>
       <Particles
-        particleColors={['#ffffff', '#ffffff']}
-        particleCount={200}
-        particleSpread={10}
-        speed={0.1}
+        particleColors={['#eeeeff', '#aaaaff']}
+        particleCount={350}
+        particleSpread={15}
+        speed={0.15}
         particleBaseSize={100}
         moveParticlesOnHover={true}
         alphaParticles={false}
@@ -47,13 +47,26 @@ export default function Hero() {
           textShadow: '0 4px 8px rgba(0,0,0,0.3)',
           pointerEvents: 'none'
         }}>
-          Welcome to Our World
+          Amir H. Teymuri
         </h1>
 
         {/* Subtext */}
         <p style={{
           fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
           fontWeight: '300',
+          marginBottom: '1rem',
+          color: '#e0e0e0',
+          lineHeight: '1.6',
+          maxWidth: '600px',
+          margin: '0 auto 3rem auto',
+          textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+          pointerEvents: 'none'
+        }}>
+          Front-End Engineer
+        </p>
+        <p style={{
+          fontSize: 'clamp(0.5rem, 2vw, 1rem)',
+          fontWeight: '150',
           marginBottom: '3rem',
           color: '#e0e0e0',
           lineHeight: '1.6',
@@ -62,7 +75,7 @@ export default function Hero() {
           textShadow: '0 2px 4px rgba(0,0,0,0.3)',
           pointerEvents: 'none'
         }}>
-          Discover amazing experiences and innovative solutions that transform the way you interact with technology
+          Front-End Develeoper with a passion for responsive and clean UX designs!
         </p>
       </div>
 
