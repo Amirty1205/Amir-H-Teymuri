@@ -1,9 +1,11 @@
 // sections/About.js
 "use client";
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function About() {
   const [isDark, setIsDark] = useState(false);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const checkDarkMode = () => {
@@ -19,50 +21,59 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
+  // RTL styles for Persian
+  const isRTL = language === 'fa';
+  const sectionStyle = isRTL ? { direction: 'rtl', textAlign: 'right' } : { direction: 'ltr', textAlign: 'left' };
+
   return (
     <section
       id="about"
       className="px-6 py-20 transition-colors duration-300"
-      style={{ backgroundColor: 'var(--bg-primary)' }}
+      style={{ 
+        backgroundColor: 'var(--bg-primary)',
+        ...sectionStyle 
+      }}
     >
       <div className="max-w-4xl mx-auto">
         <h2
           className="text-4xl font-bold mb-6 transition-colors duration-300"
           style={{ color: 'var(--text-primary)' }}
         >
-          About Me
+          {language === 'en' ? "About Me" : "درباره من"}
         </h2>
         <p
           className="text-lg leading-relaxed transition-colors duration-300"
           style={{ color: 'var(--text-secondary)' }}
         >
-          I'm a frontend developer with a passion for creating clean, modern, and
+          {language === 'en' ? `I'm a frontend developer with a passion for creating clean, modern, and
           responsive web applications. I enjoy working with React, Next.js, and
-          Tailwind CSS to bring designs to life.
+          Tailwind CSS to bring designs to life.` : `من یک توسعه دهنده فرانت اند هستم که علاقه زیادی به ایجاد برنامه‌های وب تمیز، مدرن و واکنش‌گرا دارم. من از کار با ری‌اکت، نکست‌جی‌اس و تیلویند سی‌اس‌اس برای زنده کردن طرح‌ها لذت می‌برم.`}
         </p>
+        
         <h3
           className="text-2xl font-bold mt-6 transition-colors duration-300"
           style={{ color: 'var(--text-primary)' }}
         >
-          Education
+          {language === 'en' ? "Education" : "تحصیلات"}
         </h3>
         <p
           className="text-lg leading-relaxed transition-colors duration-300"
           style={{ color: 'var(--text-secondary)' }}
         >
-          BSc in computer engineering at Islamic Azad University
+          {language === 'en' ? "BSc in computer engineering at Islamic Azad University" : "کارشناسی مهندسی کامپیوتر از دانشگاه آزاد اسلامی"}
         </p>
+        
         <h3
           className="text-2xl font-bold mt-6 transition-colors duration-300"
           style={{ color: 'var(--text-primary)' }}
         >
-          Track Record
+          {language === 'en' ? "Track Record" : "سابقه کاری"}
         </h3>
         <p
           className="text-lg leading-relaxed transition-colors duration-300"
           style={{ color: 'var(--text-secondary)' }}
         >
-          Head of Front-End Developers and main Front-End engineer at{" "}
+          {language === 'en' ? `Head of Front-End Developers and main Front-End engineer at ` : `سرپرست تیم توسعه فرانت اند و مهندس اصلی فرانت اند در `}
           <a
             className="underline transition-colors duration-300 hover:opacity-80"
             style={{ color: 'var(--accent-color)' }}
@@ -70,9 +81,9 @@ export default function About() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Ajur.app
-          </a>{" "}
-          since June 2025
+            {language === 'en' ? "Ajur.app" : "آجر"}
+          </a>
+          {language === 'en' ? ` since June 2024` : ` از خرداد ۱۴۰۳`}
         </p>
       </div>
     </section>
